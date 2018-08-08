@@ -1616,7 +1616,7 @@ print quicksort([2,4,6,7,1,2,5])
 >  更多排序问题可见：[数据结构与算法-排序篇-Python描述](http://blog.csdn.net/mrlevo520/article/details/77829204)
 
 ## 12 选择排序
-```
+```python
 def selection_sort(arr):
     newArr = []
     for i in range(len(arr)):
@@ -1925,7 +1925,7 @@ class Anagram:
 对于如下有向图，从起点到终点最短路径
 
 <img src="/img/graph.png" width="50%" height="50%">>
-```
+```python
   def dijkstras_algorithm(graph):
       # 计算起点到各点的开销散列表
       costs = dict()
@@ -2007,7 +2007,7 @@ class Anagram:
 
 ## 26 图的广度优先搜索
 <img src="/img/广度优先遍历.png" width='60%' height="60%">>
-```
+```python
     from collections import deque
 
 
