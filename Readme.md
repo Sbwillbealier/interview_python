@@ -120,6 +120,7 @@
       * [22 单链表逆置](#22-单链表逆置)
       * [23 两个字符串是否是变位词](#23-两个字符串是否是变位词)
       * [24 动态规划问题](#24-动态规划问题)
+      * [25 迪杰斯特拉算法](#25-迪杰斯特拉算法)
 
 <!-- markdown-toc end -->
 
@@ -1613,7 +1614,6 @@ print quicksort([2,4,6,7,1,2,5])
 
 >  更多排序问题可见：[数据结构与算法-排序篇-Python描述](http://blog.csdn.net/mrlevo520/article/details/77829204)
 
-
 ## 12 选择排序
 ```
 def selection_sort(arr):
@@ -1917,3 +1917,88 @@ class Anagram:
 ## 24 动态规划问题
 
 >  可参考：[动态规划(DP)的整理-Python描述](http://blog.csdn.net/mrlevo520/article/details/75676160)
+
+## 25 迪杰斯特拉算法
+
+> 迪杰斯特拉算法(dijkstras)是从一个顶点到其余各顶点的最短路径算法，解决的是有向图中最短路径问题
+对于如下有向图，从起点到终点最短路径
+![有向图](/img/graph.png)
+```
+  def dijkstras_algorithm(graph):
+      # 计算起点到各点的开销散列表
+      costs = dict()
+      infinity = float('inf')  # 定义无穷大
+      for key in graph.keys():
+          if key != "start":
+              costs[key] = graph['start'].get(key, infinity)
+
+      # 定义父元素散列表
+      parents = dict()
+      for node in graph.keys():
+          if node != "start":
+              parents[node] = None
+          for sub_node in graph['start'].keys():
+              parents[sub_node] = 'start'
+
+      # # 定义数组存储已经被处理的节点
+      processed = []
+
+      print(costs)
+      print(parents)
+
+      # 在未处理的节点中找到开销最小的节点
+      node = get_lowest_cost_node(costs, processed)
+
+      while node is not None:
+          cost = costs[node]  # 起始点到当前节点的开销
+          neighbors = graph[node]  # 当前节点的邻居节点集
+          for n in neighbors.keys():
+              # 对每个邻居节点计算新开销
+              new_cost = costs[node] + neighbors[n]
+              if costs[n] > new_cost:
+                  # 更新起始点到达该点的开销和父节点
+                  costs[n] = new_cost
+                  parents[n] = node
+          # 当前点标记为已处理的点
+          processed.append(node)
+          # 取出下一个最小开销节点
+          node = get_lowest_cost_node(costs, processed)
+
+      path = [(pre_node, node) for node, pre_node in parents.items()]
+      return path
+
+
+  def get_lowest_cost_node(costs, processed):
+      # 初始最小开销为无穷大
+      lowest_cost = float('inf')
+      lowest_cost_node = None
+      for node in costs.keys():
+          cost = costs[node]
+          if cost < lowest_cost and node not in processed:
+              # 当前节点小于最小开销值并且未被处理
+              lowest_cost = cost
+              lowest_cost_node = node
+      return lowest_cost_node
+
+
+  if __name__ == '__main__':
+      # 存储图的散列表
+      graph = dict()  # graph = {}
+      # 起点及其邻居节点
+      graph['start'] = {}
+      graph['start']['a'] = 6
+      graph['start']['b'] = 1
+      # a节点及其邻居节点
+      graph['a'] = dict()
+      graph['a']['end'] = 1
+      # b节点及其邻居节点
+      graph['b'] = dict()
+      graph['b']['a'] = 3
+      graph['b']['end'] = 5
+      # 终点
+      graph['end'] = dict()
+
+      path = dijkstras_algorithm(graph)
+      print(path)
+
+```
