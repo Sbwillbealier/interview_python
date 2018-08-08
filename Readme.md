@@ -121,6 +121,7 @@
       * [23 两个字符串是否是变位词](#23-两个字符串是否是变位词)
       * [24 动态规划问题](#24-动态规划问题)
       * [25 迪杰斯特拉算法](#25-迪杰斯特拉算法)
+      * [26 图的广度优先搜索](#26-图的广度优先搜索)
 
 <!-- markdown-toc end -->
 
@@ -2002,4 +2003,44 @@ class Anagram:
       path = dijkstras_algorithm(graph)
       print(path)
 
+```
+
+## 26 图的广度优先搜索
+<img src="/img/广度优先遍历.png" width='60%' height="60%">>
+```
+    from collections import deque
+
+
+    def breadth_first_search(graph, start_node, search_node):
+        # 定义队列存放待查询的点
+        search_queue = deque()
+        search_queue += graph[start_node]  # 将起点的邻居节点放入查询队列
+        searched = []  # 存放已查询节点
+
+        while search_queue:
+            node = search_queue.popleft()  # 出队列
+            if node not in searched:
+                if node == search_node:
+                    searched.append(node)
+                    return searched
+                else:
+                    searched.append(node)  # 标记为已检查
+                    search_queue += graph[node]  # 将该节点的邻居放入待查询队列
+        return searched
+
+
+    if __name__ == '__main__':
+        # 构造有向图
+        graph = dict()
+        graph['a'] = ['b', 'd', 'f']
+        graph['b'] = ['c', 'g']
+        graph['c'] = []
+        graph['d'] = ['c']
+        graph['e'] = []
+        graph['f'] = ['h', 'e']
+        graph['g'] = []
+        graph['h'] = []
+
+        searched = breadth_first_search(graph, 'a', 'e')
+        print(searched)
 ```
