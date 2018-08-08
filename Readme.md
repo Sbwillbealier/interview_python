@@ -107,15 +107,19 @@
       * [9 交叉链表求交点](#9-交叉链表求交点)
       * [10 二分查找](#10-二分查找)
       * [11 快排](#11-快排)
-      * [12 找零问题](#12-找零问题)
-      * [13 广度遍历和深度遍历二叉树](#13-广度遍历和深度遍历二叉树)
-      * [17 前中后序遍历](#17-前中后序遍历)
-      * [18 求最大树深](#18-求最大树深)
-      * [19 求两棵树是否相同](#19-求两棵树是否相同)
-      * [20 前序中序求后序](#20-前序中序求后序)
-      * [21 单链表逆置](#21-单链表逆置)
-      * [22 两个字符串是否是变位词](#22-两个字符串是否是变位词)
-      * [23 动态规划问题](#23-动态规划问题)
+      * [12 选择排序](#12-选择排序)   
+      * [13 找零问题](#13-找零问题)
+      * [14 广度遍历和深度遍历二叉树](#14-广度遍历和深度遍历二叉树)
+      * [15 二叉树节点](#15-二叉树节点)
+      * [16 层次遍历](#16-层次遍历)
+      * [17 深度遍历](#17-深度遍历)
+      * [18 前中后序遍历](#18-前中后序遍历)
+      * [19 求最大树深](#19-求最大树深)
+      * [20 求两棵树是否相同](#20-求两棵树是否相同)
+      * [21 前序中序求后序](#21-前序中序求后序)
+      * [22 单链表逆置](#22-单链表逆置)
+      * [23 两个字符串是否是变位词](#23-两个字符串是否是变位词)
+      * [24 动态规划问题](#24-动态规划问题)
 
 <!-- markdown-toc end -->
 
@@ -1610,7 +1614,26 @@ print quicksort([2,4,6,7,1,2,5])
 >  更多排序问题可见：[数据结构与算法-排序篇-Python描述](http://blog.csdn.net/mrlevo520/article/details/77829204)
 
 
-## 12 找零问题
+## 12 选择排序
+```
+def selection_sort(arr):
+    newArr = []
+    for i in range(len(arr)):
+        smallest = arr[0]
+        smallest_index = 0
+        for i in range(1, len(arr)):
+            if arr[i] < smallest:
+                smallest = arr[i]
+                smallest_index = i
+        newArr.append(arr.pop(smallest_index))
+    return newArr
+
+
+mylist = [9, 8, 7, 6, 5, 20, 3, 2, 1]
+print(selection_sort(mylist))
+```
+
+## 13 找零问题
 
 
 ```python
@@ -1640,12 +1663,12 @@ def coinChange(values,valuesCounts,money,coinsUsed):
 
 方法: http://www.cnblogs.com/ChenxofHit/archive/2011/03/18/1988431.html
 
-## 13 广度遍历和深度遍历二叉树
+## 14 广度遍历和深度遍历二叉树
 
 给定一个数组，构建二叉树，并且按层次打印这个二叉树
 
 
-## 14 二叉树节点
+## 15 二叉树节点
 
 ```python
 
@@ -1659,7 +1682,7 @@ tree = Node(1, Node(3, Node(7, Node(0)), Node(6)), Node(2, Node(5), Node(4)))
 
 ```
 
-## 15 层次遍历
+## 16 层次遍历
 
 ```python
 
@@ -1671,7 +1694,7 @@ def lookup(root):
 
 ```
 
-## 16 深度遍历
+## 17 深度遍历
 
 ```python
 
@@ -1687,7 +1710,7 @@ if __name__ == '__main__':
     deep(tree)
 ```
 
-## 17 前中后序遍历
+## 18 前中后序遍历
 
 深度遍历改变顺序就OK了
 
@@ -1732,7 +1755,7 @@ def post_trvelsal(root):
 
 ```
 
-## 18 求最大树深
+## 19 求最大树深
 
 ```python
 def maxDepth(root):
@@ -1741,7 +1764,7 @@ def maxDepth(root):
         return max(maxDepth(root.left), maxDepth(root.right)) + 1
 ```
 
-## 19 求两棵树是否相同
+## 20 求两棵树是否相同
 
 ```python
 def isSameTree(p, q):
@@ -1753,7 +1776,7 @@ def isSameTree(p, q):
         return False
 ```
 
-## 20 前序中序求后序
+## 21 前序中序求后序
 
 推荐: http://blog.csdn.net/hinyunsin/article/details/6315502
 
@@ -1775,7 +1798,7 @@ def deep(root):
     print root.data
 ```
 
-## 21 单链表逆置
+## 22 单链表逆置
 
 ```python
 class Node(object):
@@ -1807,7 +1830,7 @@ while root:
 方法: http://www.xuebuyuan.com/2066385.html?mobile=1
 
 
-## 22 两个字符串是否是变位词
+## 23 两个字符串是否是变位词
 
 ```python
 class Anagram:
@@ -1891,8 +1914,6 @@ class Anagram:
 
 
 
-## 23 动态规划问题
+## 24 动态规划问题
 
 >  可参考：[动态规划(DP)的整理-Python描述](http://blog.csdn.net/mrlevo520/article/details/75676160)
-
-
