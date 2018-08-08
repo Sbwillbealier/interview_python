@@ -1922,6 +1922,7 @@ class Anagram:
 
 > 迪杰斯特拉算法(dijkstras)是从一个顶点到其余各顶点的最短路径算法，解决的是有向图中最短路径问题
 对于如下有向图，从起点到终点最短路径
+
 <img src="/img/graph.png" width="50%" height="50%">>
 ```
   def dijkstras_algorithm(graph):
